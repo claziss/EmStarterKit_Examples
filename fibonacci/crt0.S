@@ -12,7 +12,7 @@
 ;; *******************************************************************************************************************
 	.file "crt0.s"
 
-	.section .ivt
+	.section .ivt, "a",@progbits
 ;; *******************************************************************************************************************
 ;// handler's name              type      number  name                    offset in IVT (hex/dec)
 .word   __start             ;   exception   0   program entry point offset  0x0     0
@@ -86,28 +86,40 @@ abort:
 	.type _exit_halt, @function
 	.align 4
 memory_error        :
+	b.d     _exit_halt
 	mov	r0, 0x101
 instruction_error   :
+	b.d     _exit_halt
 	mov	r0, 0x102
 EV_MachineCheck     :
+	b.d     _exit_halt
 	mov	r0, 0x103
 EV_TLBMissI         :
+	b.d     _exit_halt
 	mov	r0, 0x104
 EV_TLBMissD         :
+	b.d     _exit_halt
 	mov	r0, 0x105
 EV_ProtV            :
+	b.d     _exit_halt
 	mov	r0, 0x106
 EV_PrivilegeV       :
+	b.d     _exit_halt
 	mov	r0, 0x108
 EV_SWI              :
+	b.d     _exit_halt
 	mov	r0, 0x109
 EV_Trap             :
+	b.d     _exit_halt
 	mov	r0, 0x10A
 EV_Extension        :
+	b.d     _exit_halt
 	mov	r0, 0x10B
 EV_DivZero          :
+	b.d     _exit_halt
 	mov	r0, 0x10C
 EV_DCError          :
+	b.d     _exit_halt
 	mov	r0, 0x10D
 EV_Malignedr        :
 	mov	r0, 0x10E
