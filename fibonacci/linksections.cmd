@@ -2,16 +2,15 @@ INCLUDE linkcmds.memory
 
 SECTIONS
 {
-    .ivt :
+    .ivt 0x00 :
     {
       KEEP (*(.ivt));
     } > REGION_IVT
     .init :
     {
-	. = 0x100;
 	KEEP (*(.init));
     } > REGION_INIT
-    .text :
+    .text 0x100 :
     {
 	*(.text)
     } > REGION_TEXT
